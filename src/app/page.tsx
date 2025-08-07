@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import ChatWidget from "./components/ChatWidget";
 import { Reveal } from "./components/Reveal";
+import { Translation } from "./types/types";
 
 // Translations for ES, EN, FR
-const translations: any = {
-es: {
+const translations: Record<Lang, Translation> = {
+  es: {
     heroTitle: "¿Tus pedidos y clientes te comen el tiempo?",
     heroDesc:
       "Instalá un Asistente IA que responde por WhatsApp, gestiona pedidos y aumenta tus ventas — sin apps complicadas ni planillas eternas.",
@@ -225,7 +226,7 @@ export default function LandingPage() {
         {" "}
         <section className="bg-white dark:bg-gray-900 py-12 px-4">
           <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {t.agents.map((a: any, i: number) => (
+            {t.agents.map((a, i) => (
               <motion.div
                 key={i}
                 initial="hidden"
