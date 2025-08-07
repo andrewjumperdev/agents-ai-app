@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sun, Moon } from "lucide-react";
 import Image from "next/image";
 import ChatWidget from "./components/ChatWidget";
 import { Reveal } from "./components/Reveal";
