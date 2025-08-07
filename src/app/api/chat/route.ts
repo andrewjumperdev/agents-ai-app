@@ -1,23 +1,26 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") return res.status(405).end();
-
-  const { message } = req.body;
-  console.log("Received message:", message);
-
+export async function POST(request: Request) {
   try {
+    const { message } = await request.json();
+    console.log("Received message:", message);
+
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: message }],
     });
 
-    res.status(200).json({ response: completion.choices[0].message.content });
+    return NextResponse.json({
+      response: completion.choices[0].message.content,
+    });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ response: "Hubo un error al procesar el mensaje." });
+    return NextResponse.json(
+      { response: "Hubo un error al procesar el mensaje." },
+      { status: 500 }
+    );
   }
 }
