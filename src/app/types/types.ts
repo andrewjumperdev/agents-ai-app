@@ -23,3 +23,11 @@ export type Translation = {
 };
 
 export type Lang = "es" | "en" | "fr";
+
+export interface Post {
+  slug: string;
+  title: string;
+  date: string;
+  description?: string;
+  content: string;
+}
