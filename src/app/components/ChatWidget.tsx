@@ -42,11 +42,11 @@ export default function ChatWidget({ lang }: Props) {
 
   const t = chatTranslations[lang];
 
-  useEffect(() => {
-    if (open && messages.length === 0) {
-      setMessages([`🤖: ${t.welcome}`]);
-    }
-  }, [open, lang]);
+  // useEffect(() => {
+  //   if (open && messages.length === 0) {
+  //     setMessages([`🤖: ${t.welcome}`]);
+  //   }
+  // }, [open, lang]);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
