@@ -8,7 +8,7 @@ type NavbarProps = {
   setLang: React.Dispatch<React.SetStateAction<Lang>>;
 };
 
-const Navbar: React.FC<NavbarProps> = ({ links, lang, setLang }) => {
+const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
   return (
     <nav className="w-full px-4 py-3 flex justify-between items-center bg-white dark:bg-gray-900 shadow-md">
       <div className="flex items-center gap-3">
