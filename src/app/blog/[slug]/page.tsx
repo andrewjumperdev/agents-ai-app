@@ -8,7 +8,7 @@ interface Params {
 }
 
 export default async function PostPage({ params }: Params) {
-  const post = getPostBySlug(params.slug);
+  const post = await getPostBySlug(params.slug);
 
   return (
     <main className="max-w-3xl mx-auto px-6 py-12">
