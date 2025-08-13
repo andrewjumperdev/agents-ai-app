@@ -15,6 +15,11 @@ export const metadata = {
     "resumen de documentos",
     "icebreaker AI",
   ],
+    icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg", 
+  },
   openGraph: {
     title: "Automatiza Pedidos & Soporte 24/7 con AI",
     description:
