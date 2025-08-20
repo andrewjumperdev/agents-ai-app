@@ -9,7 +9,7 @@ export type Testimonial = {
   author: string;
 };
 
-export type Translation = {
+export interface Translation {
   heroTitle: string;
   heroDesc: string;
   cta: string;
@@ -19,8 +19,13 @@ export type Translation = {
   demoDesc: string;
   demoWhatsapp: string;
   demoCalendly: string;
-  testimonial: Testimonial;
-};
+  testimonial: {
+    quote: string;
+    author: string;
+  }[]; 
+  
+}
+
 
 export type Lang = "es" | "en" | "fr";
 

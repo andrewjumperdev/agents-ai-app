@@ -18,7 +18,7 @@ const containerVariants = {
 export default function LandingPage() {
   const [lang, setLang] = useState<Lang>("es");
   const [mounted, setMounted] = useState(false);
-  
+
   useEffect(() => {
     setMounted(true);
     const savedLang = localStorage.getItem("lang");
@@ -37,7 +37,7 @@ export default function LandingPage() {
 
   if (!mounted) return null;
   const t = translations[lang];
-  
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 flex flex-col">
       {/* Navbar */}
@@ -57,7 +57,8 @@ export default function LandingPage() {
             </h2>
             <p className="text-base md:text-lg mb-6 opacity-80">{t.heroDesc}</p>
             <Link
-              href="#demo"
+              href="https://wa.me/+50661661848"
+              target="_blank"
               className="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:bg-blue-700 transition"
             >
               {t.cta}
@@ -119,15 +120,29 @@ export default function LandingPage() {
       {/* AIMA Flow */}
 
       <Reveal>
-        <section className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 py-12 px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <blockquote className="italic text-lg md:text-xl mb-4">
-              “{t.testimonial.quote}”
-            </blockquote>
-            <p className="font-semibold">{t.testimonial.author}</p>
+        <section className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 py-16 px-4">
+          <div className="max-w-6xl mx-auto grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {t.testimonial.map((t, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.6, delay: i * 0.2 }}
+                className="bg-white dark:bg-gray-700 rounded-3xl shadow-xl p-6 flex flex-col justify-between hover:scale-105 transform transition"
+              >
+                <blockquote className="italic text-base md:text-lg mb-4 text-gray-800 dark:text-gray-200">
+                  “{t.quote}”
+                </blockquote>
+                <p className="font-semibold text-right text-gray-900 dark:text-gray-100">
+                  {t.author}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </section>
       </Reveal>
+
+
       {/* Testimonial */}
 
       <Reveal>
@@ -140,8 +155,9 @@ export default function LandingPage() {
             <p className="mb-8 opacity-90">{t.demoDesc}</p>
             <div className="flex flex-col md:flex-row justify-center gap-4">
               <Link
-                href="https://wa.me/123?text=Demo"
+                href="https://wa.me/+50661661848"
                 className="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition"
+                target="_blank"
               >
                 {t.demoWhatsapp}
               </Link>

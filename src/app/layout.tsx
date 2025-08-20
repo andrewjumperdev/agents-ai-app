@@ -24,11 +24,11 @@ export const metadata = {
     title: "Automatiza Pedidos & Soporte 24/7 con AI",
     description:
       "Bot IA que gestiona pedidos, responde dudas y mejora tus conversiones. Demo gratis disponible.",
-    url: "https://tu-dominio.com",
+    url: "https://agents-ai.andrewcr.com",
     siteName: "Tu Asistente IA",
     images: [
       {
-        url: "https://tu-dominio.com/og-image.jpg",
+        url: "https://agents-ai.andrewcr.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Tu Asistente IA en acción",
@@ -42,8 +42,8 @@ export const metadata = {
     title: "Automatiza Pedidos & Soporte 24/7 con AI",
     description:
       "Bot IA que gestiona pedidos, responde dudas y mejora tus conversiones. Demo gratis disponible.",
-    images: ["https://tu-dominio.com/twitter-card.jpg"],
-    creator: "@TuUsuarioTwitter",
+    images: ["https://agents-ai.andrewcr.com/twitter-card.jpg"],
+    creator: "@jumper_Develop",
   },
   robots: {
     index: true,
@@ -56,7 +56,7 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
-  metadataBase: new URL("https://tu-dominio.com"),
+  metadataBase: new URL("https://agents-ai.andrewcr.com"),
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -76,9 +76,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             "offers": {
               "@type": "Offer",
               "priceCurrency": "EUR",
-              "price": "0.00",
+              "price": "1200.00",
               "availability": "https://schema.org/InStock",
-              "url": "https://tu-dominio.com"
+              "url": "https://agents-ai.andrewcr.com"
             }
           }`}
         </Script>
@@ -87,11 +87,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Jumper Enterprise",
-            "url": "https://tu-dominio.com",
-            "logo": "https://tu-dominio.com/logo.png",
+            "url": "https://agents-ai.andrewcr.com",
+            "logo": "https://agents-ai.andrewcr.com/logo.png",
             "sameAs": [
-              "https://www.linkedin.com/company/jumperenterprise",
-              "https://twitter.com/TuUsuarioTwitter"
+              "https://www.linkedin.com/company/jumper-enterprise",
+              "https://twitter.com/jumper_Develop"
             ]
           }`}
         </Script>
