@@ -34,11 +34,24 @@ const chatTranslations = {
   },
 };
 
+interface AppointmentSlots {
+  date?: string;
+  time?: string;
+  service?: string;
+  [key: string]: unknown; // campos extra opcionales
+}
+
+interface ChatPayload {
+  reply: string;
+  action?: "book" | "book_and_confirm" | string;
+  slots?: AppointmentSlots;
+}
+
 export default function ChatWidget({ lang }: Props) {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<string[]>([]);
   const [input, setInput] = useState("");
-  const [appointment, setAppointment] = useState<Record<string, any>>({});
+  const [appointment, setAppointment] = useState<AppointmentSlots>({});
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const t = chatTranslations[lang];
@@ -46,13 +59,11 @@ export default function ChatWidget({ lang }: Props) {
   // Inicializa conversación cuando se abre o cambia idioma
   useEffect(() => {
     if (!open) return;
-    // Mantén el historial pero reemplaza solo los dos primeros mensajes (welcome + primer prompt)
     setMessages((prev) => {
-      const rest = prev.slice(2); // mantiene todo excepto los 2 primeros
+      const rest = prev.slice(2); // conserva todo excepto los 2 primeros
       return [`🤖: ${t.welcome}`, `🤖: ${getFirstQuestion(lang)}`, ...rest];
     });
-    // reset appointment? no — preservamos si el usuario ya estaba en medio
-  }, [lang, open]);
+  }, [lang, open, t.welcome]);
 
   // Scroll automático
   useEffect(() => {
@@ -61,31 +72,30 @@ export default function ChatWidget({ lang }: Props) {
     }
   }, [messages]);
 
-  // Devuelve la primera pregunta por idioma
   function getFirstQuestion(l: Lang) {
     if (l === "es") return "¿Qué fecha te gustaría para la cita? (DD/MM/AAAA)";
     if (l === "fr")
       return "À quelle date souhaitez-vous votre rendez-vous ? (JJ/MM/AAAA)";
     return "Which date would you like for your appointment? (DD/MM/YYYY)";
   }
-  async function callChatApi(userText: string) {
+
+  async function callChatApi(userText: string): Promise<ChatPayload> {
     const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: userText, lang, context: appointment }),
     });
 
-    const data = await res.json();
+    const data = (await res.json()) as ChatPayload | { error: string; details?: unknown };
     if (!res.ok) {
-      // Muestra el error exacto en el chat para debugging
-      const errMsg = data?.error
-        ? `${data.error}${
-            data?.details ? " - " + JSON.stringify(data.details) : ""
-          }`
-        : "Unknown server error";
+      const errMsg =
+        "error" in data
+          ? `${data.error}${"details" in data && data.details ? " - " + JSON.stringify(data.details) : ""}`
+          : "Unknown server error";
       throw new Error(errMsg);
     }
-    return data;
+
+    return data as ChatPayload;
   }
 
   async function handleSend() {
@@ -94,31 +104,26 @@ export default function ChatWidget({ lang }: Props) {
     setMessages((m) => [...m, `🧑: ${text}`]);
     setInput("");
 
-    // Llamada inteligente a la API
-    let payload;
+    let payload: ChatPayload;
     try {
       payload = await callChatApi(text);
-    } catch (err: any) {
-      setMessages((m) => [...m, `🤖: Error técnico: ${err.message}`]);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Error desconocido";
+      setMessages((m) => [...m, `🤖: Error técnico: ${message}`]);
       console.error("callChatApi error:", err);
       return;
     }
 
-    // payload esperado: { reply: string, action?: string, slots?: { date?, time?, service? } }
-    const { reply, action, slots } = payload as any;
+    const { reply, action, slots } = payload;
 
-    // Mostrar reply (en el idioma que venga)
     setMessages((m) => [...m, `🤖: ${reply}`]);
 
-    // Merge slots
     if (slots && typeof slots === "object") {
       setAppointment((prev) => ({ ...prev, ...slots }));
     }
 
-    // Si la IA solicita reservar (o ya está confirmada), guardamos
     if (action === "book" || action === "book_and_confirm") {
       try {
-        // agrega datos extra como email/phone si los tienes
         const bookingResp = await fetch("/api/appointments", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -128,17 +133,13 @@ export default function ChatWidget({ lang }: Props) {
           setMessages((m) => [...m, `🤖: ✅ Cita registrada correctamente.`]);
           setAppointment({});
         } else {
-          setMessages((m) => [
-            ...m,
-            `🤖: Error al guardar la cita. Intenta de nuevo.`,
-          ]);
+          setMessages((m) => [...m, `🤖: Error al guardar la cita. Intenta de nuevo.`]);
         }
-      } catch (err) {
-        setMessages((m) => [...m, `🤖: Error al conectar con el servidor.`]);
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : "Error desconocido";
+        setMessages((m) => [...m, `🤖: Error técnico: ${message}`]);
       }
     }
-
-    // si action === 'ask_date' etc. no hace falta cambio extra; la IA ya preguntó.
   }
 
   // Al abrir por primera vez, inicializa mensajes
@@ -146,8 +147,7 @@ export default function ChatWidget({ lang }: Props) {
     if (open && messages.length === 0) {
       setMessages([`🤖: ${t.welcome}`, `🤖: ${getFirstQuestion(lang)}`]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]); // intencional: solo cuando se abre
+  }, [open, messages.length, t.welcome, lang]);
 
   return (
     <>

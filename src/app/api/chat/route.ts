@@ -1,59 +1,107 @@
-// app/api/chat/route.ts
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
-import { translations } from "@/app/libs/translations";
+
+type ChatCompletionRequestMessage = {
+  role: "system" | "user" | "assistant";
+  content: string;
+};
+
+interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
+interface ChatResponse {
+  reply: string;
+  action: string;
+  slots: Record<string, unknown>;
+}
+
+// Validación de objeto desconocido a ChatMessage
+function isChatMessage(obj: unknown): obj is ChatMessage {
+  return (
+    typeof obj === "object" &&
+    obj !== null &&
+    "role" in obj &&
+    "content" in obj &&
+    ((obj as { role: unknown }).role === "user" ||
+      (obj as { role: unknown }).role === "assistant") &&
+    typeof (obj as { content: unknown }).content === "string"
+  );
+}
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { message, lang = "es", context = {}, history = [] } = body || {};
+    const body: unknown = await request.json();
+    const { message, lang = "es", history = [] } = (body as {
+      message?: string;
+      lang?: string;
+      history?: unknown[];
+    }) || {};
 
     if (!message || typeof message !== "string") {
-      return NextResponse.json({ error: "Missing 'message' in request body" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing 'message' in request body" },
+        { status: 400 }
+      );
     }
 
     const envKey = process.env.OPENAI_API_KEY;
-    if (!envKey) return NextResponse.json({ error: "OPENAI_API_KEY missing" }, { status: 500 });
+    if (!envKey)
+      return NextResponse.json(
+        { error: "OPENAI_API_KEY missing" },
+        { status: 500 }
+      );
 
-    const businessSummary = /* tu buildBusinessSummary(lang) */ "";
-    const systemPrompt = `You are an assistant that schedules demos and bookings for this business. ${businessSummary} Always reply in ${lang === "es" ? "Spanish" : lang === "fr" ? "French" : "English"}. Return valid JSON ONLY with keys: reply, action, slots.`;
+    const businessSummary = "";
+    const systemPrompt = `You are an assistant that schedules demos and bookings for this business. ${businessSummary} Always reply in ${
+      lang === "es" ? "Spanish" : lang === "fr" ? "French" : "English"
+    }. Return valid JSON ONLY with keys: reply, action, slots.`;
 
-    // history should be array de { role: "user"|"assistant", content: string }
-    // validamos y convertimos por seguridad
-    const safeHistory = Array.isArray(history)
-      ? history
-          .filter((m: any) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
-          .map((m: any) => ({ role: m.role === "assistant" ? "assistant" : "user", content: m.content }))
+    // Validamos history
+    const safeHistory: ChatMessage[] = Array.isArray(history)
+      ? history.filter(isChatMessage)
       : [];
 
-    // Construimos el payload para la API manteniendo el system prompt.
-    const messages = [
+    // Construimos mensajes para OpenAI
+    const messages: ChatCompletionRequestMessage[] = [
       { role: "system", content: systemPrompt },
-      ...safeHistory,
+      ...safeHistory.map((h) => ({
+        role: h.role,
+        content: h.content,
+      })),
       { role: "user", content: message },
     ];
 
     const openai = new OpenAI({ apiKey: envKey });
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      messages: messages as any,
+      messages,
       max_tokens: 400,
       temperature: 0.05,
     });
 
     const raw = completion.choices?.[0]?.message?.content ?? "";
-    // igual que antes: intentar parsear JSON o fallback
+
+    // Parseo seguro del JSON
     try {
-      const parsed = JSON.parse(raw);
-      parsed.reply = parsed.reply ?? String(raw).slice(0, 300);
-      parsed.action = parsed.action ?? "idle";
-      parsed.slots = parsed.slots ?? {};
-      return NextResponse.json(parsed);
+      const parsed: Partial<ChatResponse> = JSON.parse(raw);
+      const response: ChatResponse = {
+        reply: parsed.reply ?? raw.slice(0, 300),
+        action: parsed.action ?? "idle",
+        slots: parsed.slots ?? {},
+      };
+      return NextResponse.json(response);
     } catch {
-      return NextResponse.json({ reply: String(raw).trim(), action: "idle", slots: {} });
+      return NextResponse.json({
+        reply: raw.trim(),
+        action: "idle",
+        slots: {},
+      });
     }
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Internal Server Error";
     console.error("Chat API error:", err);
-    return NextResponse.json({ error: err?.message ?? "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
