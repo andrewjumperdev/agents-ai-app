@@ -17,8 +17,8 @@ export default function VoiceAgent() {
 
   return (
     <div>
-      {/* @ts-ignore: Custom element not in JSX.IntrinsicElements */}
-      <elevenlabs-convai agent-id="agent_7901k34hbzzheb9tj3av3rd9fp0r"></elevenlabs-convai>
+        {/* @ts-expect-error: Custom element not in JSX.IntrinsicElements */}
+        <elevenlabs-convai agent-id="agent_7901k34hbzzheb9tj3av3rd9fp0r"></elevenlabs-convai>
     </div>
   );
 }
