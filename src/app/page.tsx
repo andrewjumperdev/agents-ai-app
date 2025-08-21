@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import ChatWidget from "./components/ChatWidget";
 import { Reveal } from "./components/Reveal";
 import { Lang } from "./types/types";
 import Navbar from "./components/Navbar";
 import { translations } from "./libs/translations";
+import VoiceAgent from "./components/VoiceAgent";
 
 const LANGS: Lang[] = ["es", "en", "fr"];
 const containerVariants = {
@@ -174,16 +174,13 @@ export default function LandingPage() {
         </section>
       </Reveal>
       {/* Demo CTA */}
-
+            <VoiceAgent />
       {/* Footer */}
       <footer className="py-6 px-4 bg-gray-50 dark:bg-gray-900 text-center opacity-80 text-sm">
         <p>
           © {new Date().getFullYear()} Jumper Enterprise. Tous droits réservés.
         </p>
       </footer>
-
-      {/* Chat Widget */}
-      <ChatWidget lang={lang} />
     </div>
   );
 }
