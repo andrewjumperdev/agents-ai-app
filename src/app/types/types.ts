@@ -1,7 +1,7 @@
 export type Agent = {
-  icon: string;
+  icon?: string;
   title: string;
-  desc: string;
+  desc?: string;
 };
 
 export type Testimonial = {
@@ -13,6 +13,7 @@ export interface Translation {
   heroTitle: string;
   heroDesc: string;
   cta: string;
+  ctaDemo: string;
   agents: Agent[];
   workSteps: string[];
   demoTitle: string;
@@ -23,7 +24,7 @@ export interface Translation {
     quote: string;
     author: string;
   }[]; 
-  
+  whatsappMessage: string;
 }
 
 
@@ -36,3 +37,35 @@ export interface Post {
   description?: string;
   content: string;
 }
+
+export interface CTALandingProps {
+  whatsappNumber: string;
+  demoLink: string;
+}
+
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  lang: Lang;
+}
+
+export type ModalTranslation = {
+  title: string;
+  desc: string;
+  placeholders: {
+    name: string;
+    email: string;
+    company: string;
+    position: string;
+    interest: string;
+    date: string;
+  };
+  submit: string;
+  submitting: string;
+  successTitle: string;
+  successDesc: string;
+  close: string;
+  selectAgent: string;
+  premiumTitle: string;
+  agents: Agent[];
+};

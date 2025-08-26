@@ -1,4 +1,4 @@
-import { Lang, Translation } from "../types/types";
+import { Lang, ModalTranslation, Translation } from "../types/types";
 
 export const translations: Record<Lang, Translation> = {
   es: {
@@ -6,6 +6,7 @@ export const translations: Record<Lang, Translation> = {
     heroDesc:
       "Instalá un Asistente IA que responde por WhatsApp, procesa pedidos y multiplica tus ventas — todo automatizado, sin complicaciones ni planillas eternas.",
     cta: "🔥 Probalo Ahora",
+    ctaDemo: "📅 Solicitar Prueba Gratuita",
     agents: [
       {
         icon: "💰",
@@ -62,7 +63,7 @@ export const translations: Record<Lang, Translation> = {
     demoDesc:
       "Interactuá con nuestro bot como si fueras un cliente real o reservá una demo personalizada para tu negocio.",
     demoWhatsapp: "💬 Probar en WhatsApp",
-    demoCalendly: "📅 Agendar Demo",
+    demoCalendly: "📅 Agendar Prueba Gratuita",
     testimonial: [
       {
         quote:
@@ -81,6 +82,7 @@ export const translations: Record<Lang, Translation> = {
         author: "– Julien L., Distributeur B2B 🇫🇷",
       },
     ],
+     whatsappMessage: "Hola, quiero probar el Agente IA y agendar una demo personalizada.",
   },
 
   en: {
@@ -88,6 +90,7 @@ export const translations: Record<Lang, Translation> = {
     heroDesc:
       "Install an AI Assistant that replies on WhatsApp, handles orders, and boosts your sales — fully automated, no extra apps or stress.",
     cta: "🔥 Try it Now",
+    ctaDemo: "📅 Request Free Trial",
     agents: [
       {
         icon: "💰",
@@ -144,7 +147,7 @@ export const translations: Record<Lang, Translation> = {
     demoDesc:
       "Chat with our bot like a real customer or book a custom demo for your business.",
     demoWhatsapp: "💬 Try on WhatsApp",
-    demoCalendly: "📅 Book a Demo",
+    demoCalendly: "📅 Book Free Trial",
     testimonial: [
       {
         quote:
@@ -163,6 +166,8 @@ export const translations: Record<Lang, Translation> = {
         author: "– Julien L., B2B Distributor 🇺🇸",
       },
     ],
+        whatsappMessage: "Hello, I want to try the AI Agent and schedule a personalized demo.",
+
   },
 
   fr: {
@@ -170,6 +175,7 @@ export const translations: Record<Lang, Translation> = {
     heroDesc:
       "Installez un Assistant IA qui répond sur WhatsApp, gère les commandes et booste vos ventes — entièrement automatisé, sans stress ni outils compliqués.",
     cta: "🔥 Tester Maintenant",
+    ctaDemo: "📅 Profiter d'une essai gratuit",
     agents: [
       {
         icon: "💰",
@@ -226,7 +232,7 @@ export const translations: Record<Lang, Translation> = {
     demoDesc:
       "Discutez avec notre bot comme un vrai client ou réservez une démo personnalisée pour votre activité.",
     demoWhatsapp: "💬 Tester sur WhatsApp",
-    demoCalendly: "📅 Réserver une Démo",
+    demoCalendly: "📅 Réserver une Essai Gratuit",
     testimonial: [
       {
         quote:
@@ -244,6 +250,101 @@ export const translations: Record<Lang, Translation> = {
           "Nous avons automatisé 80 % de nos opérations et augmenté nos ventes de 25 % dès le premier mois grâce aux agents IA. La gestion des tâches répétitives et le suivi client sont devenus simples et efficaces.",
         author: "– Julien L., Distributeur B2B 🇫🇷",
       },
+    ],
+        whatsappMessage: "Bonjour, je souhaite tester l'Agent IA et planifier une démo personnalisée.",
+
+  },
+};
+
+export const modalTranslations: Record<Lang, ModalTranslation> = {
+  es: {
+    title: "Agenda tu Prueba Gratuita",
+    desc: "Completa tus datos y uno de nuestros agentes IA te contactará para preparar tu demo.",
+    placeholders: {
+      name: "Nombre completo",
+      email: "Correo electrónico",
+      company: "Empresa",
+      position: "Cargo",
+      interest: "Interés o área a automatizar",
+      date: "Fecha deseada",
+    },
+    submit: "Agendar Cita",
+    submitting: "Enviando...",
+    successTitle: "¡Gracias!",
+    successDesc:
+      "Hemos recibido tu solicitud. Te contactaremos pronto para coordinar tu demo personalizada.",
+    close: "Cerrar",
+    selectAgent: "Selecciona un Agente",
+    premiumTitle: "Paquete Premium",
+    agents: [
+      { title: "Agente Ventas Pro" },
+      { title: "Agente Google Reviews" },
+      { title: "Agente Citas" },
+      { title: "Agente Blog SEO" },
+      { title: "Agente Secretario" },
+      { title: "Manager E-Commerce Shopify" },
+      { title: "Agente Email Scrapper" },
+      { title: "Icebreaker AI" },
+    ],
+  },
+  en: {
+    title: "Schedule Your Free Trial",
+    desc: "Fill in your details and one of our AI agents will contact you to prepare your demo.",
+    placeholders: {
+      name: "Full Name",
+      email: "Email",
+      company: "Company",
+      position: "Position",
+      interest: "Interest or area to automate",
+      date: "Preferred Date",
+    },
+    submit: "Book Appointment",
+    submitting: "Submitting...",
+    successTitle: "Thank You!",
+    successDesc:
+      "We have received your request. We will contact you shortly to schedule your personalized demo.",
+    close: "Close",
+    selectAgent: "Select an Agent",
+    premiumTitle: "Premium Package",
+    agents: [
+      { title: "AI Sales Pro" },
+      { title: "Google Reviews Agent" },
+      { title: "Appointments Agent" },
+      { title: "SEO Blog Agent" },
+      { title: "Secretary Agent" },
+      { title: "E-Commerce Manager Shopify" },
+      { title: "Email Scrapper Agent" },
+      { title: "Icebreaker AI" },
+    ],
+  },
+  fr: {
+    title: "Réservez votre Essai Gratuit",
+    desc: "Remplissez vos informations et l’un de nos agents IA vous contactera pour préparer votre démo.",
+    placeholders: {
+      name: "Nom complet",
+      email: "Email",
+      company: "Entreprise",
+      position: "Poste",
+      interest: "Intérêt ou domaine à automatiser",
+      date: "Date souhaitée",
+    },
+    submit: "Planifier le Rendez-vous",
+    submitting: "Envoi...",
+    successTitle: "Merci !",
+    successDesc:
+      "Nous avons reçu votre demande. Nous vous contacterons bientôt pour coordonner votre démo personnalisée.",
+    close: "Fermer",
+    selectAgent: "Sélectionnez un Agent",
+    premiumTitle: "Pack Premium",
+    agents: [
+      { title: "Agent Ventes Pro" },
+      { title: "Agent Google Reviews" },
+      { title: "Rendez-vous Agent" },
+      { title: "Agent Blog SEO" },
+      { title: "Agent Secrétaire" },
+      { title: "Manager E-Commerce Shopify" },
+      { title: "Agent Email Scrapper" },
+      { title: "Icebreaker IA" },
     ],
   },
 };
