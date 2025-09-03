@@ -1,51 +1,66 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { Post } from "../types/types";
+import { MongoClient } from "mongodb";
+import { remark } from "remark";
+import html from "remark-html";
 
-const postsDir = path.join(process.cwd(), "posts");
+const uri = process.env.MONGODB_URI!;
+const client = new MongoClient(uri);
 
-
-export async function getAllPosts(): Promise<Post[]> {
-  if (!fs.existsSync(postsDir)) {
-    fs.mkdirSync(postsDir);
-    return [];
-  }
-
-  const filenames = fs.readdirSync(postsDir);
-  return filenames.map((filename) => {
-    const filePath = path.join(postsDir, filename);
-    const fileContent = fs.readFileSync(filePath, "utf8");
-    const { data, content } = matter(fileContent);
-
-    if (!data.title || !data.date) {
-      throw new Error(`El post ${filename} debe tener 'title' y 'date' en el frontmatter`);
-    }
-
-    return {
-      slug: filename.replace(/\.md$/, ""),
-      title: data.title,
-      date: data.date,
-      description: data.description || content.slice(0, 150) + "...",
-      content,
-    };
-  });
+async function mdToHtml(markdown: string) {
+  const processed = await remark().use(html).process(markdown);
+  return processed.toString();
 }
-export function getPostBySlug(slug: string): Post {
-  const filePath = path.join(postsDir, `${slug}.md`);
-  const fileContent = fs.readFileSync(filePath, "utf8");
-  const { data, content } = matter(fileContent);
 
-  // Aquí garantizamos que data tiene title y date
-  if (!data.title || !data.date) {
-    throw new Error(`El post ${slug} debe tener 'title' y 'date' en el frontmatter`);
-  }
+export async function getAllPosts(lang: "es" | "en" | "fr" = "es") {
+  await client.connect();
+  const db = client.db("agents-ai");
+  const collection = db.collection("posts");
+
+  const posts = await collection.find({}).sort({ date: -1 }).toArray();
+
+  return Promise.all(
+    posts.map(async (post) => {
+      const rawContent = post.content?.[lang] || "";
+      const title = rawContent.split("\n")[0].replace("# ", "");
+      const description = rawContent.replace(/\n/g, " ").slice(0, 150) + "...";
+      const content = await mdToHtml(rawContent);
+
+      return {
+        slug: post.slug,
+        title,
+        description,
+        content,
+        date: new Date(post.date).toISOString(),
+        category: post.category,
+        tags: post.tags,
+        author: post.author,
+        image: post.seo?.ogImage
+      };
+    })
+  );
+}
+
+export async function getPostBySlug(slug: string, lang: "es" | "en" | "fr" = "es") {
+  await client.connect();
+  const db = client.db("agents-ai");
+  const collection = db.collection("posts");
+
+  const post = await collection.findOne({ slug });
+  if (!post) throw new Error(`No se encontró el post con slug ${slug}`);
+
+  const rawContent = post.content?.[lang] || "";
+  const title = rawContent.split("\n")[0].replace("# ", "");
+  const description = rawContent.replace(/\n/g, " ").slice(0, 150) + "...";
+  const content = await mdToHtml(rawContent);
 
   return {
-    slug,
-    title: data.title,
-    date: data.date,
-    description: data.description || "",
+    slug: post.slug,
+    title,
+    description,
     content,
+    date: new Date(post.date).toISOString(),
+    category: post.category,
+    tags: post.tags,
+    author: post.author,
+    image: post.seo?.ogImage
   };
 }

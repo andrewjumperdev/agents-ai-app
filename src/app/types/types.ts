@@ -34,8 +34,10 @@ export interface Post {
   slug: string;
   title: string;
   date: string;
-  description?: string;
+  description: string;
   content: string;
+  category?: string;
+  image?: string;
 }
 
 export interface CTALandingProps {

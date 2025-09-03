@@ -4,8 +4,8 @@ export const translations: Record<Lang, Translation> = {
   es: {
     heroTitle: "Tus pedidos y clientes gestionados sin esfuerzo",
     heroDesc:
-      "Instalá un Asistente IA que responde por WhatsApp, procesa pedidos y multiplica tus ventas — todo automatizado, sin complicaciones ni planillas eternas.",
-    cta: "🔥 Probalo Ahora",
+      "Multiplicá tus ventas y ahorrá 10+ horas semanales con un Asistente IA que gestiona pedidos, clientes y citas automáticamente, 24/7.",
+    cta: "🔥 Interactuá con el bot en vivo",
     ctaDemo: "📅 Solicitar Prueba Gratuita",
     agents: [
       {

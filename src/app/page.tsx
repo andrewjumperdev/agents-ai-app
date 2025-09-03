@@ -67,13 +67,13 @@ export default function LandingPage() {
                     href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(t.whatsappMessage)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition"
+                    className="bg-green-500 text-center text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition"
                   >
                     {t.cta}
                   </a>
                 <button
                   onClick={() => setIsDemoModalOpen(true)}
-                  className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                  className="bg-blue-600 text-center text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
                 >
                   {t.ctaDemo}
                 </button>
