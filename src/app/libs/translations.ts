@@ -2,6 +2,7 @@ import { Lang, ModalTranslation, Translation } from "../types/types";
 
 export const translations: Record<Lang, Translation> = {
   es: {
+    backButton: "Volver",
     heroTitle: "Tus pedidos y clientes gestionados sin esfuerzo",
     heroDesc:
       "Multiplicá tus ventas y ahorrá 10+ horas semanales con un Asistente IA que gestiona pedidos, clientes y citas automáticamente, 24/7.",
@@ -86,6 +87,7 @@ export const translations: Record<Lang, Translation> = {
   },
 
   en: {
+    backButton: "Back",
     heroTitle: "Manage orders and clients effortlessly",
     heroDesc:
       "Install an AI Assistant that replies on WhatsApp, handles orders, and boosts your sales — fully automated, no extra apps or stress.",
@@ -171,6 +173,7 @@ export const translations: Record<Lang, Translation> = {
   },
 
   fr: {
+    backButton: "Retour",
     heroTitle: "Gérez commandes et clients sans effort",
     heroDesc:
       "Installez un Assistant IA qui répond sur WhatsApp, gère les commandes et booste vos ventes — entièrement automatisé, sans stress ni outils compliqués.",

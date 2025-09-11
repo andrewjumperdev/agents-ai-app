@@ -10,6 +10,7 @@ export type Testimonial = {
 };
 
 export interface Translation {
+  backButton: string;
   heroTitle: string;
   heroDesc: string;
   cta: string;

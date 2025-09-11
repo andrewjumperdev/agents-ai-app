@@ -2,22 +2,23 @@ import Link from "next/link";
 import { getAllPosts } from "@/app/utils/posts";
 import { Post, Lang } from "@/app/types/types";
 import { translations } from "@/app/libs/translations";
+import Image from "next/image";
 
 interface BlogPageProps {
-  params: { lang: Lang };
+  params: Promise<{ lang: Lang }>;
 }
 
 export default async function BlogPage({ params }: BlogPageProps) {
-  const { lang } = params;
+  const { lang } = await params;
   const posts: Post[] = await getAllPosts(lang);
   const t = translations[lang] || translations["en"];
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-12">
       <div className="mb-8 flex gap-3 flex-wrap">
-        <Link href={`/${lang}`}>
+        <Link href={`/`}>
           <button className="px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg shadow hover:bg-gray-300 dark:hover:bg-gray-700 hover:scale-105 transform transition-all duration-300">
-            ← {t.heroTitle.split(" ")[0]}
+            ← {t.backButton.split(" ")[0]}
           </button>
         </Link>
       </div>
@@ -34,10 +35,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
             style={{ animationDelay: `${index * 100}ms` }}
           >
             {image && (
-              <img
+              <Image
                 src={image}
                 alt={title}
                 className="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"
+                width={500}
+                height={200}
               />
             )}
 
