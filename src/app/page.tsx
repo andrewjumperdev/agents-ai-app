@@ -119,22 +119,6 @@ export default function LandingPage() {
         </Reveal>
 
         <Reveal>
-          <section className="py-12 px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                {lang === "es" ? "Flujo AIMA" : "AIMA Flow"}
-              </h3>
-              <ol className="list-decimal list-inside text-left space-y-3 opacity-90">
-                {t.workSteps.map((s: string, i: number) => (
-                  <li key={i}>{s}</li>
-                ))}
-              </ol>
-            </div>
-          </section>
-        </Reveal>
-        {/* AIMA Flow */}
-
-        <Reveal>
           <section className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 py-16 px-4">
             <div className="max-w-6xl mx-auto grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {t.testimonial.map((t, i) => (

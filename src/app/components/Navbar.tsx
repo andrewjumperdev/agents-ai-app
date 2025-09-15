@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Lang } from "../types/types";
 import Image from "next/image";
 import Link from "next/link";
+import { translations } from "../libs/translations";
 
 type NavbarProps = {
   links?: { label: string; href: string }[];
@@ -17,6 +18,7 @@ const flagMap: Record<Lang, string> = {
 
 const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const t = translations[lang] || translations["en"];
 
   return (
     <nav className="w-full px-4 py-3 flex justify-between items-center bg-white dark:bg-gray-900 shadow-md">
@@ -30,7 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
           className="w-10 h-10 md:w-12 md:h-12"
         />
         <h1 className="hidden sm:block text-lg md:text-2xl font-extrabold">
-          Tu Asistente IA
+          {t.slogan}
         </h1>
       </div>
 

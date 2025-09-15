@@ -2,6 +2,7 @@ import { Lang, ModalTranslation, Translation } from "../types/types";
 
 export const translations: Record<Lang, Translation> = {
   es: {
+    slogan:"Automatiza tus ventas 24/7",
     backButton: "Volver",
     heroTitle: "Tus pedidos y clientes gestionados sin esfuerzo",
     heroDesc:
@@ -87,6 +88,7 @@ export const translations: Record<Lang, Translation> = {
   },
 
   en: {
+    slogan:"Automated sales assistant 24/7",
     backButton: "Back",
     heroTitle: "Manage orders and clients effortlessly",
     heroDesc:
@@ -173,6 +175,7 @@ export const translations: Record<Lang, Translation> = {
   },
 
   fr: {
+    slogan:"Assistant IA automatique 24/7",
     backButton: "Retour",
     heroTitle: "Gérez commandes et clients sans effort",
     heroDesc:
