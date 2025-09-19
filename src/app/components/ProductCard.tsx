@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface Props {
   product: {
@@ -22,10 +23,12 @@ export default function ProductCard({ product, onViewDetails, onBuyNow, loading 
       whileHover={{ scale: 1.05 }}
     >
       {product.image && (
-        <img
+        <Image
           src={product.image}
           alt={product.name}
           className="h-56 w-full object-cover rounded-t-3xl"
+          width={500}
+          height={300}
         />
       )}
       <div className="p-6">

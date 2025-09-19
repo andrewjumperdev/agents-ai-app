@@ -1,5 +1,6 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 interface Props {
   product: {
@@ -35,10 +36,12 @@ export default function ProductModal({ product, open, onClose, onBuyNow, loading
             {/* Imagen del producto */}
             {product.image && (
               <div className="relative md:w-1/2 h-72 md:h-auto overflow-hidden">
-                <img
+                <Image
                   src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  width={500}
+                  height={300}
                 />
               </div>
             )}

@@ -128,7 +128,7 @@ export default function LandingPage() {
                   “{t.quote}”
                 </blockquote>
                 <p className="font-semibold text-right text-gray-900 dark:text-gray-100">
-                  {t.author} – {t.company}
+                  {t.author}
                 </p>
               </motion.div>
             ))}

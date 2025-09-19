@@ -96,13 +96,15 @@ export default function ChatBubble() {
 
       const data = await res.json();
       setBotReply(data.reply); // siempre string
-    } catch (err) {
-      setLoading(false);
-      setMessages((prev) => [
-        ...prev,
-        { from: "bot", text: "Error: no se pudo conectar al chat." },
-      ]);
-    }
+    } catch (error: unknown) {
+  console.error("Chat error:", error);
+  setLoading(false);
+  setMessages((prev) => [
+    ...prev,
+    { from: "bot", text: "Error: no se pudo conectar al chat." },
+  ]);
+}
+
   };
 
   // Mensaje inicial al abrir chat
