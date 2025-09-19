@@ -16,6 +16,10 @@ export interface Translation {
   heroDesc: string;
   cta: string;
   ctaDemo: string;
+  flashBenefits: {
+    icon: string;
+    text: string;
+  }[];
   agents: Agent[];
   workSteps: string[];
   demoTitle: string;

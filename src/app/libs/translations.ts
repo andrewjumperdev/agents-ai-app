@@ -9,6 +9,20 @@ export const translations: Record<Lang, Translation> = {
       "Multiplicá tus ventas y ahorrá 10+ horas semanales con un Asistente IA que gestiona pedidos, clientes y citas automáticamente, 24/7.",
     cta: "🔥 Interactuá con el bot en vivo",
     ctaDemo: "📅 Solicitar Prueba Gratuita",
+    flashBenefits: [
+      {
+        icon: "💰",
+        text: "Nunca pierdas ventas por falta de seguimiento",
+      },
+      {
+        icon: "⏱️",
+        text: "Ahorra horas diarias en tareas repetitivas",
+      },
+      {
+        icon: "⭐",
+        text: "Gana más clientes con reseñas y marketing automático",
+      },
+    ],
     agents: [
       {
         icon: "💰",
@@ -95,6 +109,11 @@ export const translations: Record<Lang, Translation> = {
       "Install an AI Assistant that replies on WhatsApp, handles orders, and boosts your sales — fully automated, no extra apps or stress.",
     cta: "🔥 Try it Now",
     ctaDemo: "📅 Request Free Trial",
+        flashBenefits: [
+      { icon: "💰", text: "Never miss sales due to missed follow-ups" },
+      { icon: "⏱️", text: "Save hours daily on repetitive tasks" },
+      { icon: "⭐", text: "Gain more clients with reviews & automatic marketing" },
+    ],
     agents: [
       {
         icon: "💰",
@@ -182,6 +201,11 @@ export const translations: Record<Lang, Translation> = {
       "Installez un Assistant IA qui répond sur WhatsApp, gère les commandes et booste vos ventes — entièrement automatisé, sans stress ni outils compliqués.",
     cta: "🔥 Tester Maintenant",
     ctaDemo: "📅 Profiter d'une essai gratuit",
+        flashBenefits: [
+      { icon: "💰", text: "Ne manquez jamais une vente par manque de suivi" },
+      { icon: "⏱️", text: "Gagnez du temps chaque jour sur les tâches répétitives" },
+      { icon: "⭐", text: "Attirez plus de clients grâce aux avis et marketing automatique" },
+    ],
     agents: [
       {
         icon: "💰",

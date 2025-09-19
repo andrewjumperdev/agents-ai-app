@@ -11,11 +11,6 @@ import { Lang } from "./types/types";
 
 const LANGS: Lang[] = ["es", "en", "fr"];
 
-const containerVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
 export default function LandingPage() {
   const [lang, setLang] = useState<Lang>("es");
   const [mounted, setMounted] = useState(false);
@@ -25,7 +20,8 @@ export default function LandingPage() {
   useEffect(() => {
     setMounted(true);
     const savedLang = localStorage.getItem("lang");
-    if (savedLang && LANGS.includes(savedLang as Lang)) setLang(savedLang as Lang);
+    if (savedLang && LANGS.includes(savedLang as Lang))
+      setLang(savedLang as Lang);
   }, []);
 
   useEffect(() => {
@@ -41,54 +37,96 @@ export default function LandingPage() {
         {/* Navbar */}
         <Navbar links={[]} lang={lang} setLang={setLang} />
 
-        {/* Hero */}
-        <section className="flex flex-col-reverse md:flex-row items-center max-w-6xl mx-auto px-4 py-16 gap-10">
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={containerVariants}
-            className="w-full md:w-1/2 text-center md:text-left"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              {t.heroTitle} 🚀
-            </h1>
-            <p className="text-lg md:text-xl mb-6 opacity-90">
-              {t.heroDesc}
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-              <a
-                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                  t.whatsappMessage
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition"
-              >
-                {t.cta} – ¡Empieza hoy!
-              </a>
-              <button
-                onClick={() => setIsDemoModalOpen(true)}
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
-              >
-                {t.ctaDemo} – Ver demo
-              </button>
-            </div>
-          </motion.div>
+        <section className="relative overflow-hidden bg-gradient-to-br from-white to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen flex items-center">
+          <div className="container mx-auto px-6 lg:px-20 flex flex-col-reverse lg:flex-row items-center gap-12">
+            {/* Texto principal */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex-1 text-center lg:text-left"
+            >
+              <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-gray-900 dark:text-white mb-6">
+                {t.heroTitle} 🚀
+              </h1>
+              <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 opacity-90">
+                {t.heroDesc}
+              </p>
 
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={containerVariants}
-            className="w-full md:w-1/2 flex justify-center"
-          >
-            <Image
-              src="/hero-illustration.svg"
-              alt="Hero illustration"
-              width={400}
-              height={400}
-              className="max-w-full h-auto"
-            />
-          </motion.div>
+              {/* CTA principal */}
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                <a
+                  href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                    t.whatsappMessage
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-green-500 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-green-600 hover:shadow-2xl transition transform hover:-translate-y-1"
+                >
+                  {t.cta}
+                </a>
+                <button
+                  onClick={() => setIsDemoModalOpen(true)}
+                  className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-blue-700 hover:shadow-2xl transition transform hover:-translate-y-1"
+                >
+                  {t.ctaDemo}
+                </button>
+              </div>
+
+              <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 text-gray-800 dark:text-gray-200 mb-5">
+                {t.flashBenefits.map((b, i) => (
+                  <div
+                    key={i}
+                    className="flex flex-col items-center gap-2 p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:scale-105 transition transform"
+                  >
+                    <span className="text-3xl">{b.icon}</span>
+                    <p className="font-semibold text-center text-sm">
+                      {b.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Hero illustration con animación sutil */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex-1 flex justify-center lg:justify-end relative"
+            >
+              <div className="relative w-80 h-80 md:w-96 md:h-96">
+                <Image
+                  src="/hero-illustration.svg"
+                  alt="Hero illustration"
+                  fill
+                  className="object-contain animate-bounce-slow"
+                />
+              </div>
+
+              {/* Partículas animadas de fondo */}
+              <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                <motion.div
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                  }}
+                  className="absolute w-4 h-4 bg-blue-400 rounded-full opacity-50 top-1/4 left-1/3"
+                />
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                  }}
+                  className="absolute w-3 h-3 bg-green-400 rounded-full opacity-40 top-1/2 left-2/3"
+                />
+              </div>
+            </motion.div>
+          </div>
         </section>
 
         {/* Features / Benefits */}
@@ -167,7 +205,8 @@ export default function LandingPage() {
         {/* Footer */}
         <footer className="py-6 px-4 bg-gray-50 dark:bg-gray-900 text-center opacity-80 text-sm">
           <p>
-            © {new Date().getFullYear()} Jumper Enterprise. Tous droits réservés.
+            © {new Date().getFullYear()} Jumper Enterprise. Tous droits
+            réservés.
           </p>
         </footer>
       </div>
