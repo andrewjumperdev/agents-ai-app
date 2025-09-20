@@ -189,7 +189,7 @@ export default function LandingPage() {
                 {t.demoWhatsapp}
               </Link>
               <Link
-                href="https://calendly.com/aacpariscr/new-meeting"
+                href="https://calendly.com/aacpariscr/rdv-one-on-one"
                 target="_blank"
                 className="border border-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-blue-600 transition"
               >
