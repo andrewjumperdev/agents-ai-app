@@ -81,7 +81,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
 
         {/* Botón Blog */}
         <Link href={`/blog/${lang}`}>
-          <button className="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 hover:scale-105 transform transition-all duration-300">
+          <button className="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 hover:scale-105 transform transition-all duration-300" style={{ cursor: "pointer" }} >
             Blog
           </button>
         </Link>

@@ -97,7 +97,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
             ? "Découvrez comment nos agents intelligents peuvent automatiser les ventes, le suivi et le marketing."
             : "Discover how our intelligent agents can automate sales, follow-ups, and marketing."}
         </p>
-        <Link href="/demo">
+        <Link href="https://calendly.com/aacpariscr/new-meeting" target="_blank" rel="noopener noreferrer">
           <button className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 hover:scale-105 transform transition-all duration-300">
             {t.ctaDemo}
           </button>
