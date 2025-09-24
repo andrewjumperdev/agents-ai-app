@@ -85,17 +85,17 @@ export const translations: Record<Lang, Translation> = {
         quote:
           "Con el Agente Secretario automatizamos la gestión de pedidos, emails y tareas repetitivas en Samanjo. En un mes, ahorramos horas de trabajo diario y logramos aumentar nuestra cartera de clientes significativamente.",
         author:
-          "– Jorge Pena, Director de Caves Saint Gilles y CEO de Samanjo 🇪🇸",
+          "– Jorge Pena, Director de Caves Saint Gilles y CEO de Samanjo",
       },
       {
         quote:
           "Con el Agente de Pethome, automatizamos la gestión de citas y seguimientos con clientes. En un mes, ahorramos horas de trabajo y mejoramos la satisfacción del cliente.",
-        author: "– Ana López, Fundadora de Pethome 🇪🇸",
+        author: "– Justine Duru, Fundadora de Pethome",
       },
       {
         quote:
           "Nous avons automatisé 80 % de nos opérations et augmenté nos ventes de 25 % dès le premier mois grâce aux agents IA. La gestion des tâches répétitives et le suivi client sont devenus simples et efficaces.",
-        author: "– Julien L., Distributeur B2B 🇫🇷",
+        author: "– Julien L., Distributeur B2B",
       },
     ],
      whatsappMessage: "Hola, quiero probar el Agente IA y agendar una demo personalizada.",
@@ -176,17 +176,17 @@ export const translations: Record<Lang, Translation> = {
         quote:
           "With the Secretary Agent, we automated order management, emails, and repetitive tasks at Samanjo. In just one month, we saved hours of daily work and significantly grew our client portfolio.",
         author:
-          "– Jorge Pena, Director of Caves Saint Gilles and CEO of Samanjo 🇺🇸",
+          "– Jorge Pena, Director of Caves Saint Gilles and CEO of Samanjo",
       },
       {
         quote:
           "With Pethome’s Agent, we automated appointment management and client follow-ups. In one month, we saved time and improved customer satisfaction.",
-        author: "– Ana López, Founder of Pethome 🇺🇸",
+        author: "– Justine Duru, Founder of Pethome",
       },
       {
         quote:
           "We automated 80% of our operations and increased sales by 25% in the first month thanks to AI agents. Managing repetitive tasks and client follow-ups became simple and efficient.",
-        author: "– Julien L., B2B Distributor 🇺🇸",
+        author: "– Julien L., B2B Distributor",
       },
     ],
         whatsappMessage: "Hello, I want to try the AI Agent and schedule a personalized demo.",
@@ -268,17 +268,17 @@ export const translations: Record<Lang, Translation> = {
         quote:
           "Avec l'Agent Secrétaire, nous avons automatisé la gestion des commandes, des emails et des tâches répétitives chez Samanjo. En un mois, nous avons économisé des heures de travail quotidien et augmenté notre portefeuille clients de manière significative.",
         author:
-          "– Jorge Pena, Directeur de Caves Saint Gilles et CEO de Samanjo 🇫🇷",
+          "– Jorge Pena, Directeur de Caves Saint Gilles et CEO de Samanjo",
       },
       {
         quote:
           "Avec l'Agent de Pethome, nous avons automatisé la gestion des rendez-vous et le suivi client. En un mois, nous avons économisé du temps et amélioré la satisfaction client.",
-        author: "– Ana López, Fondatrice de Pethome 🇫🇷",
+        author: "– Justine Duru, Fondatrice de Pethome",
       },
       {
         quote:
           "Nous avons automatisé 80 % de nos opérations et augmenté nos ventes de 25 % dès le premier mois grâce aux agents IA. La gestion des tâches répétitives et le suivi client sont devenus simples et efficaces.",
-        author: "– Julien L., Distributeur B2B 🇫🇷",
+        author: "– Julien L., Distributeur B2B",
       },
     ],
         whatsappMessage: "Bonjour, je souhaite tester l'Agent IA et planifier une démo personnalisée.",
