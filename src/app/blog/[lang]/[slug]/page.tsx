@@ -1,3 +1,4 @@
+
 import { getPostBySlug } from "@/app/utils/posts";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -5,6 +6,10 @@ import rehypeRaw from "rehype-raw";
 import Link from "next/link";
 import { translations } from "@/app/libs/translations";
 import Image from "next/image";
+import { Post } from "@/app/types/types";
+import NotFoundPost from "@/app/components/NotFoundPost";
+
+const defaultImage = "/images/image-default-blog.png";
 
 interface PostPageProps {
   params: Promise<{ lang: "es" | "en" | "fr"; slug: string }>;
@@ -12,7 +17,20 @@ interface PostPageProps {
 
 export default async function PostPage({ params }: PostPageProps) {
   const { lang, slug } = await params;
-  const post = await getPostBySlug(slug, lang);
+
+  let post: Post | null = null;
+
+  try {
+    post = await getPostBySlug(slug, lang);
+  } catch (err) {
+    console.error("Error fetching post:", err);
+    post = null;
+  }
+
+if (!post) return <NotFoundPost lang={lang} />;
+
+
+
   const t = translations[lang] || translations["en"];
   const whatsappNumber = "+50661661848";
 
@@ -28,11 +46,11 @@ export default async function PostPage({ params }: PostPageProps) {
       </div>
 
       <article className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden transition-shadow hover:shadow-3xl">
-        {post.image && (
+        {post.image ? (
           <div className="relative h-96 w-full overflow-hidden group">
             <Image
-              src={post.image}
-              alt={post.title}
+              src={post.image || defaultImage}
+              alt={post.title || "Imagen del post"}
               className="w-full h-full object-cover brightness-90 transition-transform duration-500 group-hover:scale-105"
               width={500}
               height={200}
@@ -55,49 +73,14 @@ export default async function PostPage({ params }: PostPageProps) {
               </time>
             </div>
           </div>
-        )}
+        ) : null}
 
         <div className="prose dark:prose-dark max-w-full p-8 space-y-8 relative">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}
-            components={{
-              h2: (props) => (
-                <h2
-                  className="text-3xl font-bold mt-8 mb-4 text-blue-600 scroll-mt-24"
-                  {...props}
-                />
-              ),
-              h3: (props) => (
-                <h3
-                  className="text-2xl font-semibold mt-6 mb-3 text-blue-500 scroll-mt-20"
-                  {...props}
-                />
-              ),
-              p: (props) => (
-                <p className="leading-relaxed text-gray-800 dark:text-gray-200" {...props} />
-              ),
-              a: (props) => (
-                <a
-                  className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 transition"
-                  {...props}
-                />
-              ),
-              blockquote: (props) => (
-                <blockquote
-                  className="border-l-4 border-blue-500 pl-6 italic text-gray-700 dark:text-gray-300 bg-blue-50 dark:bg-gray-800 p-4 rounded-md shadow-sm"
-                  {...props}
-                />
-              ),
-              code: (props) => (
-                <code
-                  className="bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5 font-mono text-sm"
-                  {...props}
-                />
-              ),
-            }}
           >
-            {post.content}
+            {post.content || ""}
           </ReactMarkdown>
 
           <div className="mt-12 text-center">

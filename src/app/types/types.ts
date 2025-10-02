@@ -37,6 +37,7 @@ export interface Translation {
 export type Lang = "es" | "en" | "fr";
 
 export interface Post {
+  _id?: string;
   slug: string;
   title: string;
   date: string;

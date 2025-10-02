@@ -1,9 +1,21 @@
 import type { NextConfig } from "next";
 
+const allowedHostnames = [
+  "towardsdatascience.com",
+  "i.ytimg.com",
+  "img.youtube.com",
+  "images.pexels.com",
+];
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["towardsdatascience.com", "i.ytimg.com", "img.youtube.com", "images.pexels.com"],
+    remotePatterns: allowedHostnames.map(hostname => ({
+      protocol: 'https',
+      hostname,
+      port: '',
+      pathname: '/**',
+    })),
   },
 };
 

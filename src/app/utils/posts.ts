@@ -1,3 +1,4 @@
+"use server";
 import { MongoClient } from "mongodb";
 import { remark } from "remark";
 import html from "remark-html";
@@ -44,11 +45,15 @@ export async function getPostBySlug(slug: string, lang: "es" | "en" | "fr" = "es
   const db = client.db("agents-ai");
   const collection = db.collection("posts");
 
-  const post = await collection.findOne({ slug });
-  if (!post) throw new Error(`No se encontró el post con slug ${slug}`);
+  const decoded = decodeURIComponent(slug).trim().toLowerCase();
+  const normalized = decoded.replace(/\s+/g, "-");
+
+  const post = await collection.findOne({ slug: normalized });
+
+  if (!post) return null;
 
   const rawContent = post.content?.[lang] || "";
-  const title = rawContent.split("\n")[0].replace("# ", "");
+  const title = rawContent.split("\n")[0].replace(/^#\s*/, "");
   const description = rawContent.replace(/\n/g, " ").slice(0, 150) + "...";
   const content = await mdToHtml(rawContent);
 
@@ -61,6 +66,6 @@ export async function getPostBySlug(slug: string, lang: "es" | "en" | "fr" = "es
     category: post.category,
     tags: post.tags,
     author: post.author,
-    image: post.seo?.ogImage
+    image: post.seo?.ogImage ?? null
   };
 }

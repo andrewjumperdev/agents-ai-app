@@ -1,6 +1,9 @@
 import "./globals.css";
 import { ReactNode } from "react";
 import Script from "next/script";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
 
 export const metadata = {
   title: "Automatiza Pedidos & Soporte 24/7 con AI – Tu Asistente IA",
@@ -100,6 +103,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           src="https://assets.calendly.com/assets/external/widget.js"
           async
         ></Script>
+        <script src="https://kit.fontawesome.com/3d8f845060.js" crossOrigin="anonymous" async></script>
       </head>
       <body className="expansion-alids-init">{children}</body>
     </html>
