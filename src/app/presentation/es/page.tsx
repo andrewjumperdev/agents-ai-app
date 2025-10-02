@@ -11,6 +11,7 @@ export default function AIProductPresentation() {
   const [salesCount, setSalesCount] = useState(0);
   const [hoursSaved, setHoursSaved] = useState(0);
 
+  console.log("Sales Count:", salesCount);
   // Animación de contadores
   useEffect(() => {
     const salesInterval = setInterval(() => {
