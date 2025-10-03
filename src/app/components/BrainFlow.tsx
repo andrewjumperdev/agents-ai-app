@@ -20,37 +20,37 @@ const AGENTS: Agent[] = [
   },
   {
     id: 2,
-    name: "Citas",
+    name: "Appointment Setter",
     desc: "Transformá tu agenda en una máquina de conversión: agenda en 1 click, confirma automáticamente y envía recordatorios inteligentes para eliminar no-shows. Menos ausencias, más citas cumplidas y ventas cerradas.",
   },
   {
     id: 3,
-    name: "Google Reviews",
+    name: "StarVault",
     desc: "Construí reputación que vende: captura reseñas verídicas tras la experiencia del cliente y publica señales sociales que aumentan la confianza y la conversión local. Menos dudas, más compra impulsiva.",
   },
   {
     id: 4,
-    name: "Blog SEO",
+    name: "Content Magnet",
     desc: "Dejá que tu negocio lidere la búsqueda: detecta tendencias, genera artículos optimizados y publica contenido que atrae tráfico cualificado. Menos dependencia de ads, más tráfico orgánico que se convierte.",
   },
   {
     id: 5,
-    name: "Secretario",
+    name: "Executive Assistant",
     desc: "Liberá al equipo de tareas administrativas: gestiona emails, etiquetas, agendas y documentos automáticamente. Tu personal se concentra en ventas; la operación se vuelve silenciosa y eficiente.",
   },
   {
     id: 6,
-    name: "Shopify",
+    name: "StorePilot",
     desc: "Tu tienda funcionando sola: sincroniza pedidos, stock y notificaciones con procesos automatizados que reducen errores y aceleran entregas. Menos cancelaciones, más experiencia de compra confiable.",
   },
   {
     id: 7,
-    name: "Email Scrapper",
+    name: "LeadHunter",
     desc: "Llená tu pipeline con leads reales: identifica empresas y contactos ideales, enriquece datos y lanza campañas automáticas que generan respuesta. Stop al spam — inicio de conversaciones que venden.",
   },
   {
     id: 8,
-    name: "Icebreaker",
+    name: "Icebreaker Pro",
     desc: "Rompé el hielo con mensajes que abren puertas: secuencias hiperpersonalizadas que provocan respuesta y agendan reuniones antes que la competencia llegue. Perfecto para recuperar frío y activar listas dormidas.",
   },
 ];
@@ -210,12 +210,14 @@ export default function BrainFlow({ initialFlow = "B2C" as FlowKey }) {
   return (
     <section
       ref={containerRef}
-      className="snap-start relative w-full h-[760px] bg-gradient-to-b from-white via-gray-50 to-gray-100 overflow-hidden"
+      className="snap-start relative w-full h-screen 
+             bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 
+             overflow-hidden"
     >
       <div className="absolute inset-6 flex flex-col items-center">
         {/* header */}
         <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
-          <h3 className="text-2xl md:text-4xl font-bold text-gray-900">
+          <h3 className="text-2xl md:text-4xl font-bold text-gray-100">
             Conectá piezas al Cerebro AI
           </h3>
           <FlowSelector />

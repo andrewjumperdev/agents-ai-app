@@ -103,11 +103,11 @@ export default function AIProductPresentation() {
           <span className="font-semibold">
             tecnología propia, consultoría estratégica y soporte humano
           </span>
-          . Por eso más de 50 empresas ya confían en nosotros para crecer sin
+          . Por eso las empresas ya confían en nosotros para crecer sin
           límites.
         </motion.p>
 
-        <motion.div
+        {/* <motion.div
           className="flex gap-4 mt-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -127,52 +127,87 @@ export default function AIProductPresentation() {
           >
             Agendar demo
           </motion.button>
-        </motion.div>
+        </motion.div> */}
       </section>
 
       <AgentsGrid />
       <BrainFlow />
 
       {/* Resultados cuantificables */}
-      <section className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-100 snap-start">
-        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-8 text-center">
+      <section className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-900 snap-start">
+        <h2 className="text-3xl md:text-5xl font-bold text-gray-100 mb-8 text-center">
           Resultados en el primer mes
         </h2>
         <div className="flex gap-8 flex-wrap justify-center">
-          <div className="p-6 bg-green-200 rounded-xl shadow-lg text-center">
-            <p className="text-4xl font-bold text-green-800">+400</p>
+          <div className="p-6 bg-green-500 rounded-xl shadow-lg text-center">
+            <p className="text-4xl font-bold text-green-900">+400</p>
             <p className="font-semibold">Leads generados automáticamente</p>
           </div>
-          <div className="p-6 bg-blue-200 rounded-xl shadow-lg text-center">
-            <p className="text-4xl font-bold text-blue-800">{hoursSaved}h</p>
+          <div className="p-6 bg-blue-500 rounded-xl shadow-lg text-center">
+            <p className="text-4xl font-bold text-blue-900">{hoursSaved}h</p>
             <p className="font-semibold">Horas ahorradas por semana</p>
           </div>
         </div>
       </section>
 
       {/* Testimonios */}
-      <section className="min-h-screen w-full flex flex-col items-center justify-center bg-white snap-start">
-        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-8 text-center">
+      <section className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-300 snap-start px-6 py-12">
+        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-12 text-center">
           Clientes que confían en Jumper Enterprise
         </h2>
-        <div className="flex flex-col md:flex-row gap-6 max-w-5xl">
-          <div className="p-6 bg-indigo-200 rounded-xl shadow-md text-center">
-            <p className="font-bold text-indigo-700">
-              Automatización de tareas repetitivas
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
+          {/* Review 1 */}
+          <div className="p-6 bg-white rounded-2xl shadow-2xl hover:shadow-xl transition">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-700 font-bold">
+                A
+              </div>
+              <div>
+                <p className="font-semibold text-gray-800">– Jorge Pena</p>
+                <p className="text-sm text-gray-500">Director de Caves Saint</p>
+              </div>
+            </div>
+            <div className="flex text-yellow-400 mb-3">⭐⭐⭐⭐⭐</div>
+            <p className="italic text-gray-700">
+              “Con el Agente Secretario automatizamos la gestión de pedidos, emails y tareas repetitivas en Samanjo. En un mes, ahorramos horas de trabajo diario y logramos aumentar nuestra cartera de clientes significativamente.”
             </p>
-            <p>— Reducción del tiempo de gestión diaria a tareas mínimas</p>
           </div>
-          <div className="p-6 bg-indigo-200 rounded-xl shadow-md text-center">
-            <p className="font-bold text-indigo-700">
-              Más de 400 leads generados automáticamente
+
+          {/* Review 2 */}
+          <div className="p-6 bg-white rounded-2xl shadow-2xl hover:shadow-xl transition">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-700 font-bold">
+                M
+              </div>
+              <div>
+                <p className="font-semibold text-gray-800">Justine Duru</p>
+                <p className="text-sm text-gray-500">Fundadora de Pethome</p>
+              </div>
+            </div>
+            <div className="flex text-yellow-400 mb-3">⭐⭐⭐⭐⭐</div>
+            <p className="italic text-gray-700">
+              “Con el Jumper Enterprise, automatizamos la gestión de citas y seguimientos con clientes. En un mes, ahorramos horas de trabajo y mejoramos la satisfacción del cliente.”
             </p>
-            <p>— Base de datos alimentada sin intervención manual</p>
           </div>
-          <div className="p-6 bg-indigo-200 rounded-xl shadow-md text-center">
-            <p className="font-bold text-indigo-700">
-              Seguimiento, emails y facturación automatizados
+
+          {/* Review 3 */}
+          <div className="p-6 bg-white rounded-2xl shadow-2xl hover:shadow-xl transition">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-700 font-bold">
+                L
+              </div>
+              <div>
+                <p className="font-semibold text-gray-800">Julien L</p>
+                <p className="text-sm text-gray-500">
+                  E-commerce Manager - Exportador de productos Españoles
+                </p>
+              </div>
+            </div>
+            <div className="flex text-yellow-400 mb-3">⭐⭐⭐⭐⭐</div>
+            <p className="italic text-gray-700">
+              “Hemos automatizado el 80 % de nuestras operaciones y aumentado nuestras ventas en un 25 % desde el primer mes gracias a los agentes de IA. La gestión de tareas repetitivas y el seguimiento de los clientes se han vuelto sencillos y eficaces”
             </p>
-            <p>— Un único supervisor maneja el e-commerce B2B</p>
           </div>
         </div>
       </section>
@@ -246,7 +281,7 @@ export default function AIProductPresentation() {
           Piloto limitado. Resultados medibles desde el primer mes.
         </motion.p>
         <div className="flex gap-4 mt-10">
-          <motion.button
+          {/* <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-2xl text-lg font-bold shadow-lg"
@@ -259,7 +294,7 @@ export default function AIProductPresentation() {
             className="border-2 border-white text-white px-8 py-4 rounded-2xl text-lg hover:bg-white hover:text-gray-900 transition"
           >
             Agendar demo
-          </motion.button>
+          </motion.button> */}
         </div>
       </section>
     </main>

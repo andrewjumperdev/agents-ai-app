@@ -46,7 +46,7 @@ const agents = [
   {
     id: 2,
     icon: <FaCalendarCheck className="w-10 h-10 text-indigo-600" />,
-    name: "Agente Citas",
+    name: "Agente Appointment Setter",
     desc: "Agenda, confirma y reduce no-shows con recordatorios inteligentes.",
     steps: [
       {
@@ -74,7 +74,7 @@ const agents = [
   {
     id: 3,
     icon: <FaStar className="w-10 h-10 text-indigo-600" />,
-    name: "Agente Google Reviews",
+    name: "StarVault ",
     desc: "Genera confianza con reseñas reales y mejora tu reputación online.",
     steps: [
       {
@@ -102,7 +102,7 @@ const agents = [
   {
     id: 4,
     icon: <FaPenFancy className="w-10 h-10 text-indigo-600" />,
-    name: "Agente Blog SEO",
+    name: "Content Magnet",
     desc: "Crea contenido que posiciona tu marca sin intervención manual.",
     steps: [
       {
@@ -130,7 +130,7 @@ const agents = [
   {
     id: 5,
     icon: <FaEnvelopeOpenText className="w-10 h-10 text-indigo-600" />,
-    name: "Agente Secretario",
+    name: "Executive Assistant",
     desc: "Automatiza emails, agendas y documentos liberando tu equipo.",
     steps: [
       {
@@ -158,7 +158,7 @@ const agents = [
   {
     id: 6,
     icon: <FaStore className="w-10 h-10 text-indigo-600" />,
-    name: "Manager E-Commerce Shopify",
+    name: "StorePilot",
     desc: "Pedidos, stock y seguimiento automatizados para ventas sin esfuerzo.",
     steps: [
       {
@@ -186,7 +186,7 @@ const agents = [
   {
     id: 7,
     icon: <FaSearch className="w-10 h-10 text-indigo-600" />,
-    name: "Agente Email Scrapper",
+    name: "LeadHunter",
     desc: "Encuentra leads calificados y contacta automáticamente.",
     steps: [
       {
@@ -214,7 +214,7 @@ const agents = [
   {
     id: 8,
     icon: <FaComments className="w-10 h-10 text-indigo-600" />,
-    name: "Icebreaker AI",
+    name: "Icebreaker Pro",
     desc: "Mensajes personalizados que generan interés inmediato y engagement real.",
     steps: [
       {
