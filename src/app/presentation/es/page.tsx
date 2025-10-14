@@ -103,8 +103,7 @@ export default function AIProductPresentation() {
           <span className="font-semibold">
             tecnología propia, consultoría estratégica y soporte humano
           </span>
-          . Por eso las empresas ya confían en nosotros para crecer sin
-          límites.
+          . Por eso las empresas ya confían en nosotros para crecer sin límites.
         </motion.p>
 
         {/* <motion.div
@@ -164,13 +163,16 @@ export default function AIProductPresentation() {
                 A
               </div>
               <div>
-                <p className="font-semibold text-gray-800">– Jorge Pena</p>
-                <p className="text-sm text-gray-500">Director de Caves Saint</p>
+                <p className="font-semibold text-gray-800">Jorge Pena</p>
+                <p className="text-sm text-gray-500">CEO Samanjo Cave Saint Gilles</p>
               </div>
             </div>
             <div className="flex text-yellow-400 mb-3">⭐⭐⭐⭐⭐</div>
             <p className="italic text-gray-700">
-              “Con el Agente Secretario automatizamos la gestión de pedidos, emails y tareas repetitivas en Samanjo. En un mes, ahorramos horas de trabajo diario y logramos aumentar nuestra cartera de clientes significativamente.”
+              “Con el Agente Secretario automatizamos la gestión de reservas,
+              emails y tareas repetitivas en Cave Saint Gilles. En un mes, ahorramos horas
+              de trabajo diario y logramos aumentar nuestra cartera de clientes
+              significativamente.”
             </p>
           </div>
 
@@ -187,7 +189,9 @@ export default function AIProductPresentation() {
             </div>
             <div className="flex text-yellow-400 mb-3">⭐⭐⭐⭐⭐</div>
             <p className="italic text-gray-700">
-              “Con el Jumper Enterprise, automatizamos la gestión de citas y seguimientos con clientes. En un mes, ahorramos horas de trabajo y mejoramos la satisfacción del cliente.”
+              “Con Jumper Enterprise, automatizamos la gestión de citas y
+              seguimientos con clientes. En un mes, ahorramos horas de trabajo y
+              mejoramos la satisfacción del cliente.”
             </p>
           </div>
 
@@ -206,7 +210,10 @@ export default function AIProductPresentation() {
             </div>
             <div className="flex text-yellow-400 mb-3">⭐⭐⭐⭐⭐</div>
             <p className="italic text-gray-700">
-              “Hemos automatizado el 80 % de nuestras operaciones y aumentado nuestras ventas en un 25 % desde el primer mes gracias a los agentes de IA. La gestión de tareas repetitivas y el seguimiento de los clientes se han vuelto sencillos y eficaces”
+              “Hemos automatizado el 80 % de nuestras operaciones y aumentado
+              nuestras ventas en un 25 % desde el primer mes gracias a los
+              agentes de IA. La gestión de tareas repetitivas y el seguimiento
+              de los clientes se han vuelto sencillos y eficaces”
             </p>
           </div>
         </div>
@@ -281,6 +288,15 @@ export default function AIProductPresentation() {
           Piloto limitado. Resultados medibles desde el primer mes.
         </motion.p>
         <div className="flex gap-4 mt-10">
+          <motion.a
+            href="/proposal" // ruta del formulario
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-2xl text-lg font-bold shadow-lg hover:bg-yellow-300 transition-colors"
+          >
+            Recibir mi propuesta personalizada 🚀
+          </motion.a>
+
           {/* <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
