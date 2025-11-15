@@ -94,7 +94,7 @@ export const translations: Record<Lang, Translation> = {
       },
       {
         quote:
-          "Nous avons automatisé 80 % de nos opérations et augmenté nos ventes de 25 % dès le premier mois grâce aux agents IA. La gestion des tâches répétitives et le suivi client sont devenus simples et efficaces.",
+          "Hemos automatizado el 80 % de nuestras operaciones y aumentado nuestras ventas en un 25 % desde el primer mes gracias a los agentes de IA. La gestión de tareas repetitivas y el seguimiento de los clientes se han vuelto sencillos y eficaces.",
         author: "– Julien L., Distributeur B2B",
       },
     ],

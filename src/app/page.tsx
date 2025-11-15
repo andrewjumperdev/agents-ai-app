@@ -8,6 +8,7 @@ import DemoModal from "./components/DemoModal";
 import VoiceAgent from "./components/VoiceAgent";
 import { translations } from "./libs/translations";
 import { Lang } from "./types/types";
+import { fbq } from '../app/utils/fbq';
 
 const LANGS: Lang[] = ["es", "en", "fr"];
 
@@ -59,6 +60,7 @@ export default function LandingPage() {
                   href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
                     t.whatsappMessage
                   )}`}
+                  onClick={() => fbq('track', 'Lead')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-green-500 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-green-600 hover:shadow-2xl transition transform hover:-translate-y-1"
