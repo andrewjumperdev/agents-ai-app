@@ -1,6 +1,11 @@
+type FbqEvent = 'PageView' | 'Lead' | 'ViewContent' | 'Purchase' | string;
 
-export const fbq = (...args: any[]) => {
-  if (typeof window !== 'undefined' && (window as any).fbq) {
-    (window as any).fbq(...args);
+export const fbq = (event: FbqEvent, params?: Record<string, unknown>) => {
+  if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+    if (params) {
+      window.fbq(event, params);
+    } else {
+      window.fbq(event);
+    }
   }
 };

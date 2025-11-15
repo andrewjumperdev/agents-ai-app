@@ -120,15 +120,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             fbq('track', 'PageView');
           `}
         </Script>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <noscript>
           <img
             height="1"
             width="1"
             style={{ display: "none" }}
             src="https://www.facebook.com/tr?id=811488458545827&ev=PageView&noscript=1"
-            alt=""
           />
         </noscript>
+
 
       </head>
       <body className="expansion-alids-init">{children}</body>

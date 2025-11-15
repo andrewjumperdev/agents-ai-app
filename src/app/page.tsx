@@ -60,7 +60,7 @@ export default function LandingPage() {
                   href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
                     t.whatsappMessage
                   )}`}
-                  onClick={() => fbq('track', 'Lead')}
+                  onClick={() => fbq('Lead')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-green-500 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-green-600 hover:shadow-2xl transition transform hover:-translate-y-1"
