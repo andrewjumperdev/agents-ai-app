@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import DemoModal from "./components/DemoModal";
+import WhatsAppBubble from "./components/WhatsAppBubble";
 // import VoiceAgent from "./components/VoiceAgent";
 import PricingSection from "./components/PricingSection";
 import FAQSection from "./components/FAQSection";
@@ -558,6 +559,9 @@ export default function LandingPage() {
         onClose={() => setIsDemoModalOpen(false)}
         lang={lang}
       />
+
+      {/* WhatsApp Bubble with Qualification */}
+      <WhatsAppBubble lang={lang} phoneNumber={whatsappNumber} />
     </>
   );
 }
