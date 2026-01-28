@@ -80,10 +80,10 @@ export const translations: Record<Lang, Translation> = {
       {
         icon: "💬",
         name: "Elena",
-        title: "Icebreaker Pro - LinkedIn",
+        title: "Icebreaker Pro - Email",
         desc: "Abre conversaciones con prospectos antes que tu competencia. Mensajes que generan interés y engagement.",
         color: "#0ea5e9",
-        features: ["Conexiones LinkedIn", "Mensajes personalizados", "Secuencias automáticas", "Análisis de respuestas"]
+        features: ["Conexiones Gmail o Email personalizados", "Mensajes personalizados", "Secuencias automáticas", "Análisis de respuestas"]
       },
       {
         icon: "🏆",
@@ -336,10 +336,10 @@ export const translations: Record<Lang, Translation> = {
       {
         icon: "💬",
         name: "Elena",
-        title: "Icebreaker Pro - LinkedIn",
+        title: "Icebreaker Pro - Email",
         desc: "Start conversations with prospects before your competition. Messages that generate interest and engagement.",
         color: "#0ea5e9",
-        features: ["LinkedIn connections", "Personalized messages", "Auto sequences", "Response analytics"]
+        features: ["Gmail or email connections", "Personalized messages", "Auto sequences", "Response analytics"]
       },
       {
         icon: "🏆",
@@ -592,10 +592,10 @@ export const translations: Record<Lang, Translation> = {
       {
         icon: "💬",
         name: "Elena",
-        title: "Icebreaker Pro - LinkedIn",
+        title: "Icebreaker Pro - Email",
         desc: "Ouvrez des conversations avec vos prospects avant la concurrence. Messages qui génèrent intérêt et engagement.",
         color: "#0ea5e9",
-        features: ["Connexions LinkedIn", "Messages personnalisés", "Séquences auto", "Analyse réponses"]
+        features: ["Connexions Gmail ou Email", "Messages personnalisés", "Séquences auto", "Analyse réponses"]
       },
       {
         icon: "🏆",
