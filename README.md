@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Agents AI App
+
+An ultra-polished, multilingual marketing site for an AI assistant platform that automates WhatsApp-based ordering, lead engagement, and customer support. Built with Next.js and modern UI tooling to deliver a fast, responsive, and conversion-focused experience.
+
+## Overview
+
+Agents AI App is a single-page, production-ready landing experience designed to showcase AI agents for order capture, document summarization, and lead outreach. The site supports multiple languages (ES/EN/FR), smooth reveal animations, and a prominent call-to-action flow to drive demos and WhatsApp engagement.
+
+## Key Features
+
+- **Multilingual content** (Spanish, English, French) with client-side language persistence.
+- **Conversion-first hero + CTA flow** to drive demo requests and WhatsApp trials.
+- **Animated sections** with reveal transitions and motion-based UI components.
+- **Modular components** for chat, animations, and reusable UI.
+- **Responsive layout** optimized for mobile, tablet, and desktop.
+
+## Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **UI & Styling:** Tailwind CSS, Lucide Icons
+- **Animations:** Framer Motion
+- **Theming:** next-themes (available for future dark-mode support)
+- **Language/Runtime:** TypeScript + React
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ (recommended)
+- npm (or your preferred Node package manager)
+
+### Installation
+
+```bash
+npm install
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/
+    api/           # API routes (if applicable)
+    components/    # Reusable UI components
+    utils/         # Helper utilities
+    layout.tsx     # Root layout
+    page.tsx       # Main landing page
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Localization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Language selection is handled on the client and stored in `localStorage` for a consistent user experience. Supported locales:
 
-## Deploy on Vercel
+- Spanish (es)
+- English (en)
+- French (fr)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The application is optimized for deployment on Vercel or any platform that supports Next.js. Typical steps:
+
+1. Install dependencies
+2. Build the app
+3. Deploy the output
+
+## Contributing
+
+This repository is currently maintained for internal product delivery. If you want to propose improvements, open an issue with context and screenshots where applicable.
