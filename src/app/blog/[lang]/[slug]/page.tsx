@@ -1,0 +1,101 @@
+
+import { getPostBySlug } from "@/app/utils/posts";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import Link from "next/link";
+import { translations } from "@/app/libs/translations";
+import Image from "next/image";
+import { Post } from "@/app/types/types";
+import NotFoundPost from "@/app/components/NotFoundPost";
+
+const defaultImage = "/images/image-default-blog.png";
+
+interface PostPageProps {
+  params: Promise<{ lang: "es" | "en" | "fr"; slug: string }>;
+}
+
+export default async function PostPage({ params }: PostPageProps) {
+  const { lang, slug } = await params;
+
+  let post: Post | null = null;
+
+  try {
+    post = await getPostBySlug(slug, lang);
+  } catch (err) {
+    console.error("Error fetching post:", err);
+    post = null;
+  }
+
+if (!post) return <NotFoundPost lang={lang} />;
+
+
+
+  const t = translations[lang] || translations["en"];
+  const whatsappNumber = "+50661661848";
+
+  return (
+    <main className="max-w-5xl mx-auto px-6 py-12 relative">
+      <div className="mb-6">
+        <Link
+          href={`/blog/${lang}`}
+          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold px-4 py-2 rounded-lg bg-blue-50 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-gray-700 transition-all transform hover:-translate-y-1 hover:scale-105 shadow-md"
+        >
+          ← Volver al Blog
+        </Link>
+      </div>
+
+      <article className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden transition-shadow hover:shadow-3xl">
+        {post.image ? (
+          <div className="relative h-96 w-full overflow-hidden group">
+            <Image
+              src={post.image || defaultImage}
+              alt={post.title || "Imagen del post"}
+              className="w-full h-full object-cover brightness-90 transition-transform duration-500 group-hover:scale-105"
+              width={500}
+              height={200}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
+              {post.category && (
+                <span className="inline-block bg-blue-500 text-white px-3 py-1 rounded-full text-sm mb-2">
+                  {post.category}
+                </span>
+              )}
+              <h1 className="text-5xl font-extrabold text-white drop-shadow-lg">
+                {post.title}
+              </h1>
+              <time className="text-gray-200 mt-1 block">
+                {new Date(post.date).toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+            </div>
+          </div>
+        ) : null}
+
+        <div className="prose dark:prose-dark max-w-full p-8 space-y-8 relative">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw]}
+          >
+            {post.content || ""}
+          </ReactMarkdown>
+
+          <div className="mt-12 text-center">
+            <Link
+              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                t.whatsappMessage
+              )}`}
+              target="_blank"
+              className="inline-block bg-blue-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:bg-blue-700 hover:scale-105 transform transition-all duration-300"
+            >
+              {t.ctaDemo}
+            </Link>
+          </div>
+        </div>
+      </article>
+    </main>
+  );
+}

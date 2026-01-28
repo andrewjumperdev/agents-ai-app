@@ -1,23 +1,44 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import OpenAI from "openai";
+import { NextRequest } from "next/server";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") return res.status(405).end();
-
-  const { message } = req.body;
-  console.log("Received message:", message);
+export async function POST(req: NextRequest) {
+  const { message, sessionId } = await req.json();
 
   try {
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: message }],
-    });
+    const res = await fetch(
+      "https://agents-flow-n8n.omlgrh.easypanel.host/webhook/e5804062-2c42-4917-b4a3-095c47608381",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message, sessionId }),
+      }
+    );
 
-    res.status(200).json({ response: completion.choices[0].message.content });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ response: "Hubo un error al procesar el mensaje." });
+    const data = await res.json();
+
+    // n8n devuelve un array de objetos
+    let reply = "";
+    if (Array.isArray(data)) {
+      reply = data
+        .map((item) => item.json?.reply || item.json?.text || "")
+        .filter(Boolean)
+        .join("\n"); // todos los mensajes concatenados
+    } else if (data.reply) {
+      reply = data.reply;
+    } else {
+      reply = "No hay respuesta";
+    }
+
+    console.log("Respuesta de n8n:", reply);
+
+    return new Response(JSON.stringify({ reply }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error al enviar mensaje a n8n:", error);
+    return new Response(
+      JSON.stringify({ reply: "Error al conectarse con el chat." }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
   }
 }
