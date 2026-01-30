@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:www.limova.ai)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "Bash(npm run seed-posts:*)",
+      "Bash(npm install:*)",
+      "Bash(grep:*)",
+      "Bash(npx tsx:*)"
     ]
   }
 }
