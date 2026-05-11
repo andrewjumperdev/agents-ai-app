@@ -10,6 +10,7 @@ type NavbarProps = {
   links?: { label: string; href: string }[];
   lang: Lang;
   setLang: React.Dispatch<React.SetStateAction<Lang>>;
+  onOpenDemo?: () => void;
 };
 
 const flagMap: Record<Lang, string> = {
@@ -39,7 +40,7 @@ const navLinks = {
   ],
 };
 
-const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
+const Navbar: React.FC<NavbarProps> = ({ lang, setLang, onOpenDemo }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -192,7 +193,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
 
               {/* CTA Button */}
               <button
-                onClick={() => handleNavClick("#pricing")}
+                onClick={() => onOpenDemo ? onOpenDemo() : handleNavClick("#pricing")}
                 className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-black font-semibold rounded-full shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-300 hover:scale-105"
               >
                 {t.cta}
@@ -246,7 +247,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
                   Blog
                 </Link>
                 <button
-                  onClick={() => handleNavClick("#pricing")}
+                  onClick={() => { onOpenDemo ? onOpenDemo() : handleNavClick("#pricing"); setMobileMenuOpen(false); }}
                   className="w-full mt-4 px-5 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-semibold rounded-full"
                 >
                   {t.cta}

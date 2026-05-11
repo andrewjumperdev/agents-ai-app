@@ -43,6 +43,27 @@ export type ProcessStep = {
   icon: string;
 };
 
+export type PainPoint = {
+  icon: string;
+  title: string;
+  desc: string;
+};
+
+export type Industry = {
+  id: string;
+  icon: string;
+  label: string;
+  pain: string;
+  automations: string[];
+  result: string;
+};
+
+export type ResultMetric = {
+  value: string;
+  label: string;
+  desc?: string;
+};
+
 export interface Translation {
   slogan: string;
   backButton: string;
@@ -88,6 +109,18 @@ export interface Translation {
   footerLinks?: { label: string; href: string }[];
   available24_7?: string;
   freeTrialDays?: string;
+  painPointsTitle?: string;
+  painPointsSubtitle?: string;
+  painPoints?: PainPoint[];
+  industriesTitle?: string;
+  industriesSubtitle?: string;
+  industries?: Industry[];
+  resultsTitle?: string;
+  results?: ResultMetric[];
+  trustBarLabel?: string;
+  stickyCtaText?: string;
+  demoVisualTitle?: string;
+  demoVisualSubtitle?: string;
 }
 
 export type Lang = "es" | "en" | "fr";
